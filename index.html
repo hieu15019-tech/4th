@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4th Anniversary</title>
+<title>Trang của tôi</title>
 
-
-<h1>Happy</h1>
 <style>
+
     * {
         margin: 0;
         padding: 0;
@@ -184,81 +183,90 @@
             opacity: 0;
         }
     }
-</style>
-</head>
 
-<body>
 
-<div class="sky">
+/* =========================
+   KHU VỰC NỘI DUNG + VIDEO
+   Nằm ở phía trên, không chiếm
+   vị trí của thanh ảnh hiện tại
+========================= */
 
-    <!-- Ánh sáng nền -->
-    <div class="glow"></div>
-    <div class="glow"></div>
+.top-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65vh;
+    z-index: 5;
 
-    <!-- Sao băng -->
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-</div>
+    padding: 30px 6%;
+    pointer-events: none;
+}
 
-<script>
-    const sky = document.querySelector(".sky");
+.top-section .left-content,
+.top-section .right-video {
+    pointer-events: auto;
+}
 
-    // Số lượng sao
-    const STAR_COUNT = 180;
+.left-content {
+    width: 48%;
+    color: white;
+    text-align: center;
+}
 
-    for (let i = 0; i < STAR_COUNT; i++) {
+.left-content h1 {
+    font-size: clamp(28px, 4vw, 48px);
+    margin-bottom: 18px;
+    text-shadow: 0 0 15px rgba(255,255,255,.5);
+}
 
-        const star = document.createElement("div");
-        star.classList.add("star");
+.left-content p {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: clamp(15px, 1.5vw, 19px);
+    line-height: 1.8;
+    color: rgba(255,255,255,.9);
+}
 
-        // Một số sao lớn hơn
-        if (Math.random() < 0.12) {
-            star.classList.add("big");
-        }
+.right-video {
+    width: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        // Một số sao có hiệu ứng lấp lánh
-        if (Math.random() < 0.08) {
-            star.classList.add("sparkle");
-        }
+.video-box {
+    width: 400px;
+    height: 600px;
+    max-width: 90%;
+    max-height: 58vh;
 
-        // Vị trí ngẫu nhiên
-        star.style.left = Math.random() * 100 + "%";
-        star.style.top = Math.random() * 100 + "%";
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
 
-        // Thời gian nhấp nháy ngẫu nhiên
-        star.style.setProperty(
-            "--duration",
-            (2 + Math.random() * 5) + "s"
-        );
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.4),
+        0 0 25px rgba(100,150,255,.25);
+}
 
-        // Thời gian trôi nhẹ
-        star.style.setProperty(
-            "--float",
-            (3 + Math.random() * 5) + "s"
-        );
+.video-box video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
 
-        // Delay ngẫu nhiên để sao không nhấp nháy cùng lúc
-        star.style.animationDelay =
-            (-Math.random() * 6) + "s";
+/* =========================
+   SLIDER HIỆN TẠI
+   Giữ nguyên vị trí phía dưới
+========================= */
 
-        sky.appendChild(star);
-    }
-</script>
 
-</body>
-</html>
-
-	
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Cuộn hình ảnh</title>
-
-<style>
     * {
         margin: 0;
         padding: 0;
@@ -366,11 +374,108 @@
             animation-duration: 18s;
         }
     }
+
+
+/* Đảm bảo slider nằm dưới khu vực mới */
+.slider {
+    position: absolute !important;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+@media (max-width: 768px) {
+    .top-section {
+        height: 68vh;
+        padding: 20px;
+        gap: 10px;
+    }
+
+    .left-content {
+        width: 50%;
+    }
+
+    .right-video {
+        width: 50%;
+    }
+
+    .video-box {
+        width: 240px;
+        height: 360px;
+        max-height: 55vh;
+    }
+
+    .left-content h1 {
+        font-size: 26px;
+    }
+
+    .left-content p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    .top-section {
+        height: 68vh;
+        padding: 15px;
+    }
+
+    .video-box {
+        width: 180px;
+        height: 270px;
+    }
+
+    .left-content h1 {
+        font-size: 22px;
+    }
+
+    .left-content p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
 </style>
 </head>
 
 <body>
 
+<!-- Hiệu ứng bầu trời hiện tại -->
+<div class="sky">
+    <div class="glow"></div>
+    <div class="glow"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+</div>
+
+<!-- =========================
+     PHẦN MỚI: NỘI DUNG + VIDEO
+     ========================= -->
+<section class="top-section">
+
+    <div class="left-content">
+        <h1>Xin chào ❤️</h1>
+
+        <p>
+            Đây là phần nội dung mới được đặt ở phía trên.
+            Bạn có thể thay đổi đoạn chữ này thành lời tỏ tình,
+            lời chúc hoặc bất kỳ nội dung nào bạn muốn.
+        </p>
+    </div>
+
+    <div class="right-video">
+        <div class="video-box">
+            <video controls autoplay muted loop playsinline>
+                <source src="video.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ video.
+            </video>
+        </div>
+    </div>
+
+</section>
+
+<!-- =========================
+     SLIDER ẢNH HIỆN TẠI
+     ========================= -->
 <div class="slider">
 
     <div class="slider-track">
@@ -419,6 +524,53 @@
     </div>
 
 </div>
+
+<script>
+
+    const sky = document.querySelector(".sky");
+
+    // Số lượng sao
+    const STAR_COUNT = 180;
+
+    for (let i = 0; i < STAR_COUNT; i++) {
+
+        const star = document.createElement("div");
+        star.classList.add("star");
+
+        // Một số sao lớn hơn
+        if (Math.random() < 0.12) {
+            star.classList.add("big");
+        }
+
+        // Một số sao có hiệu ứng lấp lánh
+        if (Math.random() < 0.08) {
+            star.classList.add("sparkle");
+        }
+
+        // Vị trí ngẫu nhiên
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+
+        // Thời gian nhấp nháy ngẫu nhiên
+        star.style.setProperty(
+            "--duration",
+            (2 + Math.random() * 5) + "s"
+        );
+
+        // Thời gian trôi nhẹ
+        star.style.setProperty(
+            "--float",
+            (3 + Math.random() * 5) + "s"
+        );
+
+        // Delay ngẫu nhiên để sao không nhấp nháy cùng lúc
+        star.style.animationDelay =
+            (-Math.random() * 6) + "s";
+
+        sky.appendChild(star);
+    }
+
+</script>
 
 </body>
 </html>
