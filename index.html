@@ -11,34 +11,41 @@
 	</header>
 </body>
 	
-/* Tuyết rơi */
 <style>
 /* CSS cho tuyết rơi */
+body {
+  overflow-x: hidden; 
+  background: #000000; /* Nền đen tuyền */
+}
 .snowflake {
   position: fixed;
-  top: -10px;
+  top: -25px; 
   z-index: 9999;
   user-select: none;
   cursor: default;
+  pointer-events: none; 
   animation-name: fall, shake;
   animation-iteration-count: infinite, infinite;
   animation-timing-function: linear, ease-in-out;
 }
 @keyframes fall {
-  0% { top: -10px; }
-  100% { top: 100vh; }
+  0% { top: -25px; }
+  100% { top: 105vh; }
 }
 @keyframes shake {
   0% { transform: translateX(0px); }
-  50% { transform: translateX(80px); }
+  50% { transform: translateX(50px); } 
   100% { transform: translateX(0px); }
 }
 </style>
 
 <script>
 // Cấu hình độ nhiều và ngẫu nhiên của tuyết
-const snowNumber = 120; // Số lượng bông tuyết (tăng lên nếu muốn nhiều hơn)
-const snowChars = ["❅", "❆", "•"]; // Kiểu hình ảnh bông tuyết
+const snowNumber = 120; 
+const snowChars = ["❅", "❆", "•"]; 
+
+// Bắt buộc dùng mã màu HEX sáng, rực rỡ để không bị tối
+const snowColors = ["#ffffff", "#ff3366", "#00f0ff"]; 
 
 for (let i = 0; i < snowNumber; i++) {
   const snow = document.createElement("div");
@@ -46,20 +53,25 @@ for (let i = 0; i < snowNumber; i++) {
   snow.innerHTML = snowChars[Math.floor(Math.random() * snowChars.length)];
   
   // Tùy chỉnh ngẫu nhiên vị trí, kích thước và tốc độ rơi
-  const size = Math.random() * 15 + 10; // Kích thước từ 10px đến 25px
-  const startX = Math.random() * window.innerWidth; // Vị trí ngang ngẫu nhiên
-  const fallDuration = Math.random() * 5 + 3; // Tốc độ rơi từ 3 đến 8 giây
-  const shakeDuration = Math.random() * 3 + 2; // Thời gian lắc qua lại
-  const delay = Math.random() * 5; // Độ trễ xuất hiện ngẫu nhiên
-  const opacity = Math.random() * 0.6 + 0.4; // Độ mờ ngẫu nhiên
+  const size = Math.random() * 15 + 10; 
+  const startX = Math.random() * 95; 
+  const fallDuration = Math.random() * 5 + 5; 
+  const shakeDuration = Math.random() * 3 + 2; 
+  const delay = Math.random() * 8; 
+  
+  // Nâng độ mờ (Opacity) tối thiểu lên 0.6 để tuyết không bị quá mờ dẫn đến nhìn giống màu đen
+  const opacity = Math.random() * 0.4 + 0.6; 
+  const randomColor = snowColors[Math.floor(Math.random() * snowColors.length)]; 
 
-  snow.style.cssText = `
-    font-size: ${size}px;
-    left: ${startX}px;
-    opacity: ${opacity};
-    animation-duration: ${fallDuration}s, ${shakeDuration}s;
-    animation-delay: ${delay}s, ${delay}s;
-  `;
+  // Thay đổi cách viết CSS: tách riêng color rõ ràng
+  snow.style.color = randomColor;
+  snow.style.fontSize = size + "px";
+  snow.style.left = startX + "vw";
+  snow.style.opacity = opacity;
+  // Làm mượt hiệu ứng phát sáng, không dùng bóng đổ quá dày gây xỉn màu
+  snow.style.textShadow = `0 0 8px ${randomColor}`; 
+  snow.style.animationDuration = `${fallDuration}s, ${shakeDuration}s`;
+  snow.style.animationDelay = `${delay}s, ${delay}s`;
   
   document.body.appendChild(snow);
 }
