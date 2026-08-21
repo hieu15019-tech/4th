@@ -19,7 +19,7 @@
             position: relative;
             font-family: sans-serif;
             color: white;
-            padding-bottom: 160px; /* Chừa khoảng trống cho slider ảnh phía dưới */
+            padding-bottom: 160px;
         }
 
         /* Tiêu đề góc trái trên */
@@ -178,7 +178,7 @@
             100% { opacity: 0; }
         }
 
-        /* Phần lời nhắn (Top section) */
+        /* Phần lời nhắn */
         .top-section {
             position: relative;
             margin-top: 90px;
@@ -208,7 +208,7 @@
             color: rgba(255,255,255,.9);
         }
 
-        /* --- PHẦN TIMELINE TRƯỢT (Đã đổi lên trên) --- */
+        /* --- PHẦN TIMELINE TRƯỢT --- */
         .timeline-section {
             position: relative;
             width: 100%;
@@ -324,7 +324,7 @@
         .timeline-btn.prev { left: 10px; }
         .timeline-btn.next { right: 10px; }
 
-        /* --- PHẦN VIDEO KỶ NIỆM (Đã chuyển xuống dưới) --- */
+        /* --- PHẦN VIDEO KỶ NIỆM --- */
         .video-section {
             position: relative;
             width: 100%;
@@ -409,7 +409,7 @@
         .slider::before { left: 0; background: linear-gradient(to right, #0b1026, transparent); }
         .slider::after { right: 0; background: linear-gradient(to left, #0b1026, transparent); }
 
-        /* Responsive cho điện thoại */
+        /* Responsive */
         @media (max-width: 768px) {
             .anniversary-title { top: 15px; left: 15px; font-size: 14px; }
             .counter-container { top: 38px; left: 15px; gap: 6px; }
@@ -429,7 +429,7 @@
 
     <div class="anniversary-title">HAPPY 4th ANNIVERSARY</div>
 
-    <!-- Bộ đếm thời gian nằm dưới tiêu đề góc trái -->
+    <!-- Bộ đếm thời gian -->
     <div class="counter-container">
         <div class="counter-box">
             <div id="years" class="counter-number">0</div>
@@ -458,7 +458,6 @@
         <div class="shooting-star"></div>
     </div>
 
-    <!-- Phần lời nhắn -->
     <section class="top-section">
         <div class="left-content">
             <h1>Hello My Love ❤️</h1>
@@ -470,7 +469,7 @@
         </div>
     </section>
 
-    <!-- PHẦN TIMELINE CÁC MỐC KỶ NIỆM (Đã chuyển lên trên) -->
+    <!-- PHẦN TIMELINE CÁC MỐC KỶ NIỆM -->
     <section class="timeline-section">
         <h2 class="timeline-title">Chặng Đường Của Chúng Mình</h2>
         <div class="timeline-carousel">
@@ -522,7 +521,7 @@
         </div>
     </section>
 
-    <!-- PHẦN VIDEO KỶ NIỆM (Đã chuyển xuống dưới) -->
+    <!-- PHẦN VIDEO KỶ NIỆM -->
     <section class="video-section">
         <h3>Thước Phim Kỷ Niệm 🎥</h3>
         <div class="video-box">
@@ -544,7 +543,7 @@
     <!-- Script xử lý -->
     <script>
         // 1. Bộ đếm thời gian
-        const startDate = new Date("2022-01-01T00:00:00");
+        const startDate = new Date("2022-08-24T00:00:00");
 
         function updateLoveTimer() {
             const now = new Date();
