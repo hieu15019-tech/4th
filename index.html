@@ -571,7 +571,7 @@
         setInterval(updateLoveTimer, 1000 * 60 * 60);
 
         // 2. Điều khiển Timeline Trượt
-        let currentTimelineIndex = 0;
+       let currentTimelineIndex = 0;
         const timelineItems = document.querySelectorAll(".timeline-item");
         const timelineTrack = document.getElementById("timelineTrack");
 
@@ -584,22 +584,15 @@
                 }
             });
 
-            const itemWidth = timelineItems[0].offsetWidth + 30; // 30px là gap
+          
+            const itemWidth = timelineItems[0].offsetWidth + 30;
             const trackOffset = -currentTimelineIndex * itemWidth;
             timelineTrack.style.transform = `translateX(${trackOffset}px)`;
         }
 
-        function moveTimeline(direction) {
-            currentTimelineIndex += direction;
-            if (currentTimelineIndex < 0) {
-                currentTimelineIndex = timelineItems.length - 1;
-            } else if (currentTimelineIndex >= timelineItems.length) {
-                currentTimelineIndex = 0;
-            }
-            updateTimeline();
-        }
-
+        
         window.addEventListener("load", () => {
+            currentTimelineIndex = 0;
             updateTimeline();
         });
 
