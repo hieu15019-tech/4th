@@ -13,31 +13,57 @@
 	
 /* Tuyết rơi */
 <style>
+/* CSS cho tuyết rơi */
 .snowflake {
   position: fixed;
   top: -10px;
-  color: #fff;
-  user-select: none;
   z-index: 9999;
-  animation: fall linear infinite;
+  user-select: none;
+  cursor: default;
+  animation-name: fall, shake;
+  animation-iteration-count: infinite, infinite;
+  animation-timing-function: linear, ease-in-out;
 }
 @keyframes fall {
-  0% { transform: translateY(-10px) translateX(0); opacity: 1; }
-  100% { transform: translateY(100vh) translateX(20px); opacity: 0.2; }
+  0% { top: -10px; }
+  100% { top: 100vh; }
+}
+@keyframes shake {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(80px); }
+  100% { transform: translateX(0px); }
 }
 </style>
 
-<div class="snowflakes" aria-hidden="true">
-  <div class="snowflake" style="left: 10%; animation-duration: 3s; font-size: 10px;">❅</div>
-  <div class="snowflake" style="left: 20%; animation-duration: 5s; font-size: 15px;">❆</div>
-  <div class="snowflake" style="left: 30%; animation-duration: 4s; font-size: 12px;">❄</div>
-  <div class="snowflake" style="left: 40%; animation-duration: 8s; font-size: 18px;">❅</div>
-  <div class="snowflake" style="left: 50%; animation-duration: 7s; font-size: 14px;">❆</div>
-  <div class="snowflake" style="left: 60%; animation-duration: 9s; font-size: 11px;">❄</div>
-  <div class="snowflake" style="left: 70%; animation-duration: 11s; font-size: 16px;">❅</div>
-  <div class="snowflake" style="left: 80%; animation-duration: 2s; font-size: 13px;">❆</div>
-  <div class="snowflake" style="left: 90%; animation-duration: 1s; font-size: 15px;">❄</div>
-</div>
+<script>
+// Cấu hình độ nhiều và ngẫu nhiên của tuyết
+const snowNumber = 120; // Số lượng bông tuyết (tăng lên nếu muốn nhiều hơn)
+const snowChars = ["❅", "❆", "•"]; // Kiểu hình ảnh bông tuyết
+
+for (let i = 0; i < snowNumber; i++) {
+  const snow = document.createElement("div");
+  snow.className = "snowflake";
+  snow.innerHTML = snowChars[Math.floor(Math.random() * snowChars.length)];
+  
+  // Tùy chỉnh ngẫu nhiên vị trí, kích thước và tốc độ rơi
+  const size = Math.random() * 15 + 10; // Kích thước từ 10px đến 25px
+  const startX = Math.random() * window.innerWidth; // Vị trí ngang ngẫu nhiên
+  const fallDuration = Math.random() * 5 + 3; // Tốc độ rơi từ 3 đến 8 giây
+  const shakeDuration = Math.random() * 3 + 2; // Thời gian lắc qua lại
+  const delay = Math.random() * 5; // Độ trễ xuất hiện ngẫu nhiên
+  const opacity = Math.random() * 0.6 + 0.4; // Độ mờ ngẫu nhiên
+
+  snow.style.cssText = `
+    font-size: ${size}px;
+    left: ${startX}px;
+    opacity: ${opacity};
+    animation-duration: ${fallDuration}s, ${shakeDuration}s;
+    animation-delay: ${delay}s, ${delay}s;
+  `;
+  
+  document.body.appendChild(snow);
+}
+</script>
 
 <style>
 
