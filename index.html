@@ -252,19 +252,14 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: all 0.5s ease-in-out;
-            opacity: 0.3;
-            transform: scale(0.8);
-            pointer-events: none;
-        }
+            pointer-events: auto;
+}
 
         .timeline-item.active {
-            opacity: 1;
-            transform: scale(1.05);
             border-color: rgba(255, 255, 255, 0.6);
             box-shadow: 0 0 25px rgba(100, 150, 255, 0.4);
-            pointer-events: auto;
             background: rgba(255, 255, 255, 0.1);
-        }
+}
 
         .timeline-img {
             width: 100%;
