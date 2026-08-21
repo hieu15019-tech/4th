@@ -10,7 +10,32 @@
 	<h1 style="color:red;"> HAPPY ANNIVERSARY</h1>
 	</header>
 </body>
+<style>
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: #fff;
+  user-select: none;
+  z-index: 9999;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0% { transform: translateY(-10px) translateX(0); opacity: 1; }
+  100% { transform: translateY(100vh) translateX(20px); opacity: 0.2; }
+}
+</style>
 
+<div class="snowflakes" aria-hidden="true">
+  <div class="snowflake" style="left: 10%; animation-duration: 7s; font-size: 10px;">❅</div>
+  <div class="snowflake" style="left: 20%; animation-duration: 10s; font-size: 15px;">❆</div>
+  <div class="snowflake" style="left: 30%; animation-duration: 6s; font-size: 12px;">❄</div>
+  <div class="snowflake" style="left: 40%; animation-duration: 12s; font-size: 18px;">❅</div>
+  <div class="snowflake" style="left: 50%; animation-duration: 8s; font-size: 14px;">❆</div>
+  <div class="snowflake" style="left: 60%; animation-duration: 9s; font-size: 11px;">❄</div>
+  <div class="snowflake" style="left: 70%; animation-duration: 11s; font-size: 16px;">❅</div>
+  <div class="snowflake" style="left: 80%; animation-duration: 7s; font-size: 13px;">❆</div>
+  <div class="snowflake" style="left: 90%; animation-duration: 10s; font-size: 15px;">❄</div>
+</div>
 
 <style>
 
