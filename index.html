@@ -32,6 +32,40 @@
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
+        /* Bộ đếm thời gian nằm ngay dưới tiêu đề góc trái */
+        .counter-container {
+            position: fixed;
+            top: 50px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1001;
+            text-align: center;
+        }
+
+        .counter-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 6px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(100, 150, 255, 0.2);
+        }
+
+        .counter-number {
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+
+        .counter-label {
+            font-size: 9px;
+            color: #ffcccc;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
         /* Hiệu ứng tuyết rơi */
         #snowflakeContainer {
             position: absolute;
@@ -286,11 +320,30 @@
 
         /* Responsive cho điện thoại */
         @media (max-width: 768px) {
+            .anniversary-title {
+                top: 15px;
+                left: 15px;
+                font-size: 14px;
+            }
+            .counter-container {
+                top: 38px;
+                left: 15px;
+                gap: 6px;
+            }
+            .counter-box {
+                padding: 3px 6px;
+            }
+            .counter-number {
+                font-size: 12px;
+            }
+            .counter-label {
+                font-size: 8px;
+            }
             .top-section {
                 flex-direction: column;
                 height: auto;
                 position: relative;
-                top: 40px;
+                top: 70px;
                 padding: 10px;
             }
             .left-content, .right-video {
@@ -312,6 +365,22 @@
 <body>
 
     <div class="anniversary-title">HAPPY 4th ANNIVERSARY</div>
+
+    <!-- Bộ đếm thời gian (Nằm dưới tiêu đề góc trái) -->
+    <div class="counter-container">
+        <div class="counter-box">
+            <div id="years" class="counter-number">0</div>
+            <div class="counter-label">Năm</div>
+        </div>
+        <div class="counter-box">
+            <div id="months" class="counter-number">0</div>
+            <div class="counter-label">Tháng</div>
+        </div>
+        <div class="counter-box">
+            <div id="days" class="counter-number">0</div>
+            <div class="counter-label">Ngày</div>
+        </div>
+    </div>
 
     <!-- Hiệu ứng tuyết rơi -->
     <div id="snowflakeContainer">
@@ -392,8 +461,35 @@
         </div>
     </div>
 
-    <!-- Script tạo sao và tuyết rơi -->
+    <!-- Script tạo sao, tuyết rơi và bộ đếm thời gian -->
     <script>
+        const startDate = new Date("2022-08-24T00:00:00");
+
+        function updateLoveTimer() {
+            const now = new Date();
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
+
+            if (days < 0) {
+                months--;
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            document.getElementById("years").innerText = years;
+            document.getElementById("months").innerText = months;
+            document.getElementById("days").innerText = days;
+        }
+
+        updateLoveTimer();
+        setInterval(updateLoveTimer, 1000 * 60 * 60);
+
         // Tạo sao ngẫu nhiên
         const sky = document.querySelector(".sky");
         const STAR_COUNT = 180;
