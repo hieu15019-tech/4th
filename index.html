@@ -97,15 +97,13 @@ for (let i = 0; i < snowNumber; i++) {
   
   // Nâng độ mờ (Opacity) tối thiểu lên 0.6 để tuyết không bị quá mờ dẫn đến nhìn giống màu đen
   const opacity = Math.random() * 0.4 + 0.6; 
-  const randomColor = snowColors[Math.floor(Math.random() * snowColors.length)]; 
 
   // Thay đổi cách viết CSS: tách riêng color rõ ràng
-  snow.style.color = randomColor;
+  snow.style.color = white;
   snow.style.fontSize = size + "px";
   snow.style.left = startX + "vw";
   snow.style.opacity = opacity;
   // Làm mượt hiệu ứng phát sáng, không dùng bóng đổ quá dày gây xỉn màu
-  snow.style.textShadow = `0 0 8px ${randomColor}`; 
   snow.style.animationDuration = `${fallDuration}s, ${shakeDuration}s`;
   snow.style.animationDelay = `${delay}s, ${delay}s`;
   
