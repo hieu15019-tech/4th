@@ -1,594 +1,508 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4th Anniversary</title>
-<body>
-	<head>
-	<h1 style="color:red;"><div style="position: fixed; top: 20px; left: 20px; font-weight: bold;">HAPPY 4th ANNIVERSARY</div></h1>
-	</header>
-</body>
-		
-<style>
-	#snowflakeContainer{position:absolute;left:0px;top:0px;}
-	.snowflake{padding-left:15px;font-size:14px;line-height:24px;position:fixed;color:#ebebeb;user-select:none;z-index:1000;-moz-user-select:none;-ms-user-select:none;-khtml-user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;}
-	.snowflake:hover {cursor:default}
-</style>
-<div id='snowflakeContainer'>
-<p class='snowflake'>❄</p>
-</div>
-<script style='text/javascript'>
-	//<![CDATA[
-	var requestAnimationFrame=window.requestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame||window.msRequestAnimationFrame;var transforms=["transform","msTransform","webkitTransform","mozTransform","oTransform"];var transformProperty=getSupportedPropertyName(transforms);var snowflakes=[];var browserWidth;var browserHeight;var numberOfSnowflakes=50;var resetPosition=false;function setup(){window.addEventListener("DOMContentLoaded",generateSnowflakes,false);window.addEventListener("resize",setResetFlag,false)}setup();function getSupportedPropertyName(b){for(var a=0;a<b.length;a++){if(typeof document.body.style[b[a]]!="undefined"){return b[a]}}return null}function Snowflake(b,a,d,e,c){this.element=b;this.radius=a;this.speed=d;this.xPos=e;this.yPos=c;this.counter=0;this.sign=Math.random()<0.5?1:-1;this.element.style.opacity=0.5+Math.random();this.element.style.fontSize=4+Math.random()*30+"px"}Snowflake.prototype.update=function(){this.counter+=this.speed/5000;this.xPos+=this.sign*this.speed*Math.cos(this.counter)/40;this.yPos+=Math.sin(this.counter)/40+this.speed/30;setTranslate3DTransform(this.element,Math.round(this.xPos),Math.round(this.yPos));if(this.yPos>browserHeight){this.yPos=-50}};function setTranslate3DTransform(a,c,b){var d="translate3d("+c+"px, "+b+"px, 0)";a.style[transformProperty]=d}function generateSnowflakes(){var b=document.querySelector(".snowflake");var h=b.parentNode;browserWidth=document.documentElement.clientWidth;browserHeight=document.documentElement.clientHeight;for(var d=0;d<numberOfSnowflakes;d++){var j=b.cloneNode(true);h.appendChild(j);var e=getPosition(50,browserWidth);var a=getPosition(50,browserHeight);var c=5+Math.random()*40;var g=4+Math.random()*10;var f=new Snowflake(j,g,c,e,a);snowflakes.push(f)}h.removeChild(b);moveSnowflakes()}function moveSnowflakes(){for(var b=0;b<snowflakes.length;b++){var a=snowflakes[b];a.update()}if(resetPosition){browserWidth=document.documentElement.clientWidth;browserHeight=document.documentElement.clientHeight;for(var b=0;b<snowflakes.length;b++){var a=snowflakes[b];a.xPos=getPosition(50,browserWidth);a.yPos=getPosition(50,browserHeight)}resetPosition=false}requestAnimationFrame(moveSnowflakes)}function getPosition(b,a){return Math.round(-1*b+Math.random()*(a+2*b))}function setResetFlag(a){resetPosition=true};
-	//]]>
-</script>
-<style>
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        overflow: hidden;
-        width: 100vw;
-        height: 100vh;
-        background:
-            radial-gradient(circle at 50% 40%, #18245a 0%, #090d2b 45%, #02030d 100%);
-        position: relative;
-    }
-
-    /* Bầu trời */
-    .sky {
-        position: absolute;
-        inset: 0;
-        overflow: hidden;
-    }
-
-    /* Ngôi sao */
-    .star {
-        position: absolute;
-        width: 3px;
-        height: 3px;
-        background: white;
-        border-radius: 50%;
-        box-shadow:
-            0 0 5px white,
-            0 0 10px rgba(255,255,255,.8);
-        animation:
-            twinkle var(--duration) ease-in-out infinite,
-            float var(--float) ease-in-out infinite;
-    }
-
-    /* Sao lớn */
-    .star.big {
-        width: 5px;
-        height: 5px;
-        box-shadow:
-            0 0 6px white,
-            0 0 14px white,
-            0 0 25px rgba(150,190,255,.8);
-    }
-
-    /* Hiệu ứng lấp lánh hình chữ thập */
-    .star.sparkle::before,
-    .star.sparkle::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        border-radius: 50%;
-    }
-
-    .star.sparkle::before {
-        width: 1px;
-        height: 24px;
-        box-shadow: 0 0 5px white;
-    }
-
-    .star.sparkle::after {
-        width: 24px;
-        height: 1px;
-        box-shadow: 0 0 5px white;
-    }
-
-    /* Tạo ánh sáng mờ phía sau */
-    .glow {
-        position: absolute;
-        width: 350px;
-        height: 350px;
-        border-radius: 50%;
-        background: rgba(70, 100, 255, .08);
-        filter: blur(70px);
-        animation: glowMove 10s ease-in-out infinite alternate;
-    }
-
-    .glow:nth-child(1) {
-        top: -100px;
-        left: -100px;
-    }
-
-    .glow:nth-child(2) {
-        right: -100px;
-        bottom: -100px;
-        animation-delay: -4s;
-    }
-
-    /* Sao băng */
-    .shooting-star {
-        position: absolute;
-        width: 120px;
-        height: 2px;
-        background: linear-gradient(
-            90deg,
-            rgba(255,255,255,0),
-            white
-        );
-        transform: rotate(-35deg);
-        filter: drop-shadow(0 0 6px white);
-        opacity: 0;
-        animation: shooting 7s linear infinite;
-    }
-
-    .shooting-star:nth-child(3) {
-        top: 20%;
-        left: 75%;
-        animation-delay: 2s;
-    }
-
-    .shooting-star:nth-child(4) {
-        top: 45%;
-        left: 90%;
-        animation-delay: 5s;
-        animation-duration: 8s;
-    }
-
-    /* Hiệu ứng sao nhấp nháy */
-    @keyframes twinkle {
-        0%, 100% {
-            opacity: .25;
-            transform: scale(.7);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4th Anniversary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        50% {
-            opacity: 1;
-            transform: scale(1.5);
-        }
-    }
-
-    @keyframes float {
-        0%, 100% {
-            margin-top: 0;
+        body {
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 40%, #18245a 0%, #090d2b 45%, #02030d 100%);
+            position: relative;
+            font-family: sans-serif;
         }
 
-        50% {
-            margin-top: -5px;
+        /* Tiêu đề góc trái trên */
+        .anniversary-title {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-weight: bold;
+            color: red;
+            z-index: 1001;
+            font-size: 16px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
-    }
 
-    /* Ánh sáng nền chuyển động */
-    @keyframes glowMove {
-        0% {
-            transform: translate(0, 0) scale(1);
+        /* Hiệu ứng tuyết rơi */
+        #snowflakeContainer {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        .snowflake {
+            padding-left: 15px;
+            font-size: 14px;
+            line-height: 24px;
+            position: fixed;
+            color: #ebebeb;
+            user-select: none;
         }
 
-        100% {
-            transform: translate(100px, 50px) scale(1.3);
+        /* Bầu trời sao */
+        .sky {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
         }
-    }
 
-    /* Sao băng */
-    @keyframes shooting {
-        0% {
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px white, 0 0 10px rgba(255,255,255,.8);
+            animation: twinkle var(--duration) ease-in-out infinite, float var(--float) ease-in-out infinite;
+        }
+
+        .star.big {
+            width: 5px;
+            height: 5px;
+            box-shadow: 0 0 6px white, 0 0 14px white, 0 0 25px rgba(150,190,255,.8);
+        }
+
+        .star.sparkle::before,
+        .star.sparkle::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 50%;
+        }
+
+        .star.sparkle::before {
+            width: 1px;
+            height: 24px;
+            box-shadow: 0 0 5px white;
+        }
+
+        .star.sparkle::after {
+            width: 24px;
+            height: 1px;
+            box-shadow: 0 0 5px white;
+        }
+
+        .glow {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(70, 100, 255, .08);
+            filter: blur(70px);
+            animation: glowMove 10s ease-in-out infinite alternate;
+        }
+
+        .glow:nth-child(1) {
+            top: -100px;
+            left: -100px;
+        }
+
+        .glow:nth-child(2) {
+            right: -100px;
+            bottom: -100px;
+            animation-delay: -4s;
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,0), white);
+            transform: rotate(-35deg);
+            filter: drop-shadow(0 0 6px white);
             opacity: 0;
-            transform: translate(0, 0) rotate(-35deg);
+            animation: shooting 7s linear infinite;
         }
 
-        5% {
-            opacity: 1;
+        .shooting-star:nth-child(3) {
+            top: 20%;
+            left: 75%;
+            animation-delay: 2s;
         }
 
-        20% {
-            opacity: 0;
-            transform: translate(-500px, 350px) rotate(-35deg);
+        .shooting-star:nth-child(4) {
+            top: 45%;
+            left: 90%;
+            animation-delay: 5s;
+            animation-duration: 8s;
         }
 
-        100% {
-            opacity: 0;
-        }
-    }
-
-
-/* =========================
-   KHU VỰC NỘI DUNG + VIDEO
-   Nằm ở phía trên, không chiếm
-   vị trí của thanh ảnh hiện tại
-========================= */
-
-.top-section {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    width: 100%;
-    height: 65vh;
-    z-index: 5;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 30px 6%;
-    pointer-events: none;
-}
-
-.top-section .left-content,
-.top-section .right-video {
-    pointer-events: auto;
-}
-
-.left-content {
-    width: 48%;
-    color: white;
-    text-align: center;
-}
-
-.left-content h1 {
-    font-size: clamp(28px, 4vw, 48px);
-    margin-bottom: 18px;
-    text-shadow: 0 0 15px rgba(255,255,255,.5);
-}
-
-.left-content p {
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: clamp(15px, 1.5vw, 19px);
-    line-height: 1.8;
-    color: rgba(255,255,255,.9);
-}
-
-.right-video {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.video-box {
-    width: 1280px;
-    height: 680px;
-    max-width: 90%;
-    max-height: 50vh;
-
-    border-radius: 20px;
-    overflow: hidden;
-    background: #000;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.4),
-        0 0 25px rgba(100,150,255,.25);
-}
-
-.video-box video {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: contain;
-}
-
-/* =========================
-   SLIDER HIỆN TẠI
-   Giữ nguyên vị trí phía dưới
-========================= */
-
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        background: #0b1026;
-        min-height: 100vh;
-        display: flex;
-        align-items: end;
-        justify-content: end;
-        overflow: hidden;
-    }
-
-    /* Khung cuộn */
-    .slider {
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-        padding: 20px 0;
-    }
-
-    /* Dải hình ảnh */
-    .slider-track {
-        display: flex;
-        width: max-content;
-        gap: 20px;
-        animation: scroll 50s linear infinite;
-    }
-
-    /* Hình ảnh */
-    .slider img {
-        width: 220px;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 18px;
-
-        box-shadow:
-            0 0 10px rgba(255,255,255,.2),
-            0 0 25px rgba(100,150,255,.2);
-
-        transition: .4s;
-    }
-
-    /* Hover vào ảnh */
-    .slider img:hover {
-        transform: scale(1.08);
-        box-shadow:
-            0 0 15px white,
-            0 0 35px rgba(100,150,255,.8);
-    }
-
-    /* Hiệu ứng cuộn */
-    @keyframes scroll {
-        from {
-            transform: translateX(0);
+        @keyframes twinkle {
+            0%, 100% { opacity: .25; transform: scale(.7); }
+            50% { opacity: 1; transform: scale(1.5); }
         }
 
-        to {
-            transform: translateX(-50%);
+        @keyframes float {
+            0%, 100% { margin-top: 0; }
+            50% { margin-top: -5px; }
         }
-    }
 
-    /* Làm mờ hai bên */
-    .slider::before,
-    .slider::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        width: 100px;
-        height: 100%;
-        z-index: 2;
-        pointer-events: none;
-    }
+        @keyframes glowMove {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.3); }
+        }
 
-    .slider::before {
-        left: 0;
-        background: linear-gradient(
-            to right,
-            #0b1026,
-            transparent
-        );
-    }
+        @keyframes shooting {
+            0% { opacity: 0; transform: translate(0, 0) rotate(-35deg); }
+            5% { opacity: 1; }
+            20% { opacity: 0; transform: translate(-500px, 350px) rotate(-35deg); }
+            100% { opacity: 0; }
+        }
 
-    .slider::after {
-        right: 0;
-        background: linear-gradient(
-            to left,
-            #0b1026,
-            transparent
-        );
-    }
+        /* Khu vực nội dung + video */
+        .top-section {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            height: 65vh;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 6%;
+            pointer-events: none;
+        }
 
-    /* Điện thoại */
-    @media (max-width: 600px) {
+        .top-section .left-content,
+        .top-section .right-video {
+            pointer-events: auto;
+        }
 
-        .slider img {
-            width: 160px;
-            height: 110px;
+        .left-content {
+            width: 48%;
+            color: white;
+            text-align: center;
+        }
+
+        .left-content h1 {
+            font-size: clamp(28px, 4vw, 48px);
+            margin-bottom: 18px;
+            text-shadow: 0 0 15px rgba(255,255,255,.5);
+        }
+
+        .left-content p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: clamp(15px, 1.5vw, 19px);
+            line-height: 1.8;
+            color: rgba(255,255,255,.9);
+        }
+
+        .right-video {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-box {
+            width: 100%;
+            max-width: 450px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,.4), 0 0 25px rgba(100,150,255,.25);
+        }
+
+        .video-box video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Slider ảnh phía dưới */
+        .slider {
+            position: absolute !important;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            overflow: hidden;
+            padding: 10px 0;
+            z-index: 10;
         }
 
         .slider-track {
-            gap: 12px;
-            animation-duration: 18s;
+            display: flex;
+            width: max-content;
+            gap: 20px;
+            animation: scroll 40s linear infinite;
         }
-    }
 
+        .slider img {
+            width: 180px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 0 10px rgba(255,255,255,.2), 0 0 25px rgba(100,150,255,.2);
+            transition: .4s;
+        }
 
-/* Đảm bảo slider nằm dưới khu vực mới */
-.slider {
-    position: absolute !important;
-    left: 0;
-    bottom: 0;
-    z-index: 10;
-}
+        .slider img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 15px white, 0 0 35px rgba(100,150,255,.8);
+        }
 
-@media (max-width: 768px) {
-    .top-section {
-        height: 68vh;
-        padding: 20px;
-        gap: 10px;
-    }
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
 
-    .left-content {
-        width: 50%;
-    }
+        .slider::before,
+        .slider::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
 
-    .right-video {
-        width: 50%;
-    }
+        .slider::before {
+            left: 0;
+            background: linear-gradient(to right, #0b1026, transparent);
+        }
 
-    .video-box {
-        width: 240px;
-        height: 360px;
-        max-height: 55vh;
-    }
+        .slider::after {
+            right: 0;
+            background: linear-gradient(to left, #0b1026, transparent);
+        }
 
-    .left-content h1 {
-        font-size: 26px;
-    }
-
-    .left-content p {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 600px) {
-    .top-section {
-        height: 68vh;
-        padding: 15px;
-    }
-
-    .video-box {
-        width: 180px;
-        height: 270px;
-    }
-
-    .left-content h1 {
-        font-size: 22px;
-    }
-
-    .left-content p {
-        font-size: 13px;
-        line-height: 1.5;
-    }
-}
-</style>
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            .top-section {
+                flex-direction: column;
+                height: auto;
+                position: relative;
+                top: 40px;
+                padding: 10px;
+            }
+            .left-content, .right-video {
+                width: 100%;
+            }
+            .left-content {
+                margin-bottom: 15px;
+            }
+            .video-box {
+                height: 220px;
+            }
+            .slider img {
+                width: 140px;
+                height: 95px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- Hiệu ứng bầu trời hiện tại -->
-<div class="sky">
-    <div class="glow"></div>
-    <div class="glow"></div>
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
-</div>
+    <div class="anniversary-title">HAPPY 4th ANNIVERSARY</div>
 
-<!-- =========================
-     PHẦN MỚI: NỘI DUNG + VIDEO
-     ========================= -->
-<section class="top-section">
-
-    <div class="left-content">
-        <h1>Hello My Love ❤️</h1>
-
-        <p>
-            Vậy là cũng đã 4 năm rồi.<br>
-           Trong 4 năm qua có những lúc vui, cũng có những lúc buồn. Nhiều lúc cảm thấy hạnh phúc cũng như cãi vã đến mức tan vỡ. Nhưng rồi mọi thứ vẫn trôi qua, anh và em vẫn bên nhau dù có chuyện gì xảy ra.
-	       Hy vọng chúng mình sẽ mãi như vậy, luôn bên nhau vượt qua mọi thứ. Cảm ơn em !!!
-        </p>
+    <!-- Hiệu ứng tuyết rơi -->
+    <div id="snowflakeContainer">
+        <p class='snowflake'>❄</p>
     </div>
 
-    <div class="right-video">
-        <div class="video-box">
-            <video controls autoplay muted loop playsinline>
-                <source src="video1.mp4" type="video/mp4">
-                Trình duyệt của bạn không hỗ trợ video.
-            </video>
+    <!-- Hiệu ứng bầu trời sao -->
+    <div class="sky">
+        <div class="glow"></div>
+        <div class="glow"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+    </div>
+
+    <!-- Phần nội dung và video -->
+    <section class="top-section">
+        <div class="left-content">
+            <h1>Hello My Love ❤️</h1>
+            <p>
+                Vậy là cũng đã 4 năm rồi.<br>
+                Trong 4 năm qua có những lúc vui, cũng có những lúc buồn. Nhiều lúc cảm thấy hạnh phúc cũng như cãi vã đến mức tan vỡ. Nhưng rồi mọi thứ vẫn trôi qua, anh và em vẫn bên nhau dù có chuyện gì xảy ra.<br>
+                Hy vọng chúng mình sẽ mãi như vậy, luôn bên nhau vượt qua mọi thứ. Cảm ơn em !!!
+            </p>
+        </div>
+
+        <div class="right-video">
+            <div class="video-box">
+                <video controls autoplay muted loop playsinline>
+                    <source src="video1.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slider ảnh -->
+    <div class="slider">
+        <div class="slider-track">
+            <!-- Bộ ảnh -->
+            <img src="anh1.jpg" alt="Photo">
+            <img src="anh2.jpg" alt="Photo">
+            <img src="anh3.jpg" alt="Photo">
+            <img src="anh4.jpg" alt="Photo">
+            <img src="anh5.jpg" alt="Photo">
+            <img src="anh6.jpg" alt="Photo">
+            <img src="anh7.jpg" alt="Photo">
+            <img src="anh8.jpg" alt="Photo">
+            <img src="anh9.jpg" alt="Photo">
+            <img src="anh10.jpg" alt="Photo">
+            <img src="anh11.jpg" alt="Photo">
+            <img src="anh12.jpg" alt="Photo">
+            <img src="anh13.jpg" alt="Photo">
+            <img src="anh14.jpg" alt="Photo">
+            <img src="anh15.jpg" alt="Photo">
+            <img src="anh16.jpg" alt="Photo">
+            <img src="anh17.jpg" alt="Photo">
+            <img src="anh18.jpg" alt="Photo">  
+
+            <!-- Lặp lại bộ ảnh để tạo hiệu ứng chạy vô hạn mượt mà -->
+            <img src="anh1.jpg" alt="Photo">
+            <img src="anh2.jpg" alt="Photo">
+            <img src="anh3.jpg" alt="Photo">
+            <img src="anh4.jpg" alt="Photo">
+            <img src="anh5.jpg" alt="Photo">
+            <img src="anh6.jpg" alt="Photo">
+            <img src="anh7.jpg" alt="Photo">
+            <img src="anh8.jpg" alt="Photo">
+            <img src="anh9.jpg" alt="Photo">
+            <img src="anh10.jpg" alt="Photo">
+            <img src="anh11.jpg" alt="Photo">
+            <img src="anh12.jpg" alt="Photo">
+            <img src="anh13.jpg" alt="Photo">
+            <img src="anh14.jpg" alt="Photo">
+            <img src="anh15.jpg" alt="Photo">
+            <img src="anh16.jpg" alt="Photo">
+            <img src="anh17.jpg" alt="Photo">
+            <img src="anh18.jpg" alt="Photo">  
         </div>
     </div>
 
-</section>
+    <!-- Script tạo sao và tuyết rơi -->
+    <script>
+        // Tạo sao ngẫu nhiên
+        const sky = document.querySelector(".sky");
+        const STAR_COUNT = 180;
 
-<!-- =========================
-     SLIDER ẢNH HIỆN TẠI
-     ========================= -->
-<div class="slider">
+        for (let i = 0; i < STAR_COUNT; i++) {
+            const star = document.createElement("div");
+            star.classList.add("star");
 
-    <div class="slider-track">
+            if (Math.random() < 0.12) star.classList.add("big");
+            if (Math.random() < 0.08) star.classList.add("sparkle");
 
-        <!-- Bộ ảnh 1 -->
-        <img src="anh1.jpg">
-		<img src="anh2.jpg">
-		<img src="anh3.jpg">
-		<img src="anh4.jpg">
-		<img src="anh5.jpg">
-		<img src="anh6.jpg">
-		<img src="anh7.jpg">
-		<img src="anh8.jpg">
-		<img src="anh9.jpg">
-		<img src="anh10.jpg">
-		<img src="anh11.jpg">
-		<img src="anh12.jpg">
-		<img src="anh13.jpg">
-		<img src="anh14.jpg">
-		<img src="anh15.jpg">
-		<img src="anh16.jpg">
-		<img src="anh17.jpg">
-		<img src="anh18.jpg">	
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+            star.style.setProperty("--duration", (2 + Math.random() * 5) + "s");
+            star.style.setProperty("--float", (3 + Math.random() * 5) + "s");
+            star.style.animationDelay = (-Math.random() * 6) + "s";
 
-
-        <!-- Lặp lại bộ ảnh để tạo chuyển động vô hạn -->
-		<img src="anh1.jpg">
-		<img src="anh2.jpg">
-		<img src="anh3.jpg">
-		<img src="anh4.jpg">
-		<img src="anh5.jpg">
-		<img src="anh6.jpg">
-		<img src="anh7.jpg">
-		<img src="anh8.jpg">
-		<img src="anh9.jpg">
-		<img src="anh10.jpg">
-		<img src="anh11.jpg">
-		<img src="anh12.jpg">
-		<img src="anh13.jpg">
-		<img src="anh14.jpg">
-		<img src="anh15.jpg">
-		<img src="anh16.jpg">
-		<img src="anh17.jpg">
-		<img src="anh18.jpg">	
-    
-    </div>
-
-</div>
-
-<script>
-
-    const sky = document.querySelector(".sky");
-
-    // Số lượng sao
-    const STAR_COUNT = 180;
-
-    for (let i = 0; i < STAR_COUNT; i++) {
-
-        const star = document.createElement("div");
-        star.classList.add("star");
-
-        // Một số sao lớn hơn
-        if (Math.random() < 0.12) {
-            star.classList.add("big");
+            sky.appendChild(star);
         }
 
-        // Một số sao có hiệu ứng lấp lánh
-        if (Math.random() < 0.08) {
-            star.classList.add("sparkle");
+        // Script tuyết rơi
+        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+        var transforms = ["transform", "msTransform", "webkitTransform", "mozTransform", "oTransform"];
+        var transformProperty = getSupportedPropertyName(transforms);
+        var snowflakes = [];
+        var browserWidth, browserHeight;
+        var numberOfSnowflakes = 40;
+        var resetPosition = false;
+
+        function setup() {
+            window.addEventListener("DOMContentLoaded", generateSnowflakes, false);
+            window.addEventListener("resize", setResetFlag, false);
+        }
+        setup();
+
+        function getSupportedPropertyName(b) {
+            for (var a = 0; a < b.length; a++) {
+                if (typeof document.body.style[b[a]] != "undefined") return b[a];
+            }
+            return null;
         }
 
-        // Vị trí ngẫu nhiên
-        star.style.left = Math.random() * 100 + "%";
-        star.style.top = Math.random() * 100 + "%";
+        function Snowflake(b, a, d, e, c) {
+            this.element = b;
+            this.radius = a;
+            this.speed = d;
+            this.xPos = e;
+            this.yPos = c;
+            this.counter = 0;
+            this.sign = Math.random() < 0.5 ? 1 : -1;
+            this.element.style.opacity = 0.5 + Math.random();
+            this.element.style.fontSize = 4 + Math.random() * 20 + "px";
+        }
 
-        // Thời gian nhấp nháy ngẫu nhiên
-        star.style.setProperty(
-            "--duration",
-            (2 + Math.random() * 5) + "s"
-        );
+        Snowflake.prototype.update = function() {
+            this.counter += this.speed / 5000;
+            this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
+            this.yPos += Math.sin(this.counter) / 40 + this.speed / 30;
+            setTranslate3DTransform(this.element, Math.round(this.xPos), Math.round(this.yPos));
+            if (this.yPos > browserHeight) { this.yPos = -50; }
+        };
 
-        // Thời gian trôi nhẹ
-        star.style.setProperty(
-            "--float",
-            (3 + Math.random() * 5) + "s"
-        );
+        function setTranslate3DTransform(a, c, b) {
+            var d = "translate3d(" + c + "px, " + b + "px, 0)";
+            a.style[transformProperty] = d;
+        }
 
-        // Delay ngẫu nhiên để sao không nhấp nháy cùng lúc
-        star.style.animationDelay =
-            (-Math.random() * 6) + "s";
+        function generateSnowflakes() {
+            var b = document.querySelector(".snowflake");
+            var h = b.parentNode;
+            browserWidth = document.documentElement.clientWidth;
+            browserHeight = document.documentElement.clientHeight;
+            for (var d = 0; d < numberOfSnowflakes; d++) {
+                var j = b.cloneNode(true);
+                h.appendChild(j);
+                var e = getPosition(50, browserWidth);
+                var a = getPosition(50, browserHeight);
+                var c = 5 + Math.random() * 40;
+                var g = 4 + Math.random() * 10;
+                var f = new Snowflake(j, g, c, e, a);
+                snowflakes.push(f);
+            }
+            h.removeChild(b);
+            moveSnowflakes();
+        }
 
-        sky.appendChild(star);
-    }
+        function moveSnowflakes() {
+            for (var b = 0; b < snowflakes.length; b++) {
+                snowflakes[b].update();
+            }
+            if (resetPosition) {
+                browserWidth = document.documentElement.clientWidth;
+                browserHeight = document.documentElement.clientHeight;
+                for (var b = 0; b < snowflakes.length; b++) {
+                    snowflakes[b].xPos = getPosition(50, browserWidth);
+                    snowflakes[b].yPos = getPosition(50, browserHeight);
+                }
+                resetPosition = false;
+            }
+            requestAnimationFrame(moveSnowflakes);
+        }
 
-</script>
+        function getPosition(b, a) {
+            return Math.round(-1 * b + Math.random() * (a + 2 * b));
+        }
 
+        function setResetFlag(a) {
+            resetPosition = true;
+        }
+    </script>
 </body>
 </html>
