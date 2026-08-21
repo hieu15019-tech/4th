@@ -4,7 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>4th Anniversary</title>
+<style>
+        body {
+            background-color: #0b0b0b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
+        .neon-blink {
+            font-size: 60px;
+            font-weight: bold;
+            color: #fff;
+            font-family: sans-serif;
+            text-transform: uppercase;
+            /* Hiệu ứng chớp nháy liên tục */
+            animation: blink-neon 1.5s infinite;
+        }
+
+        @keyframes blink-neon {
+            0%, 100% {
+                color: #fff;
+                text-shadow: 0 0 7px #fff, 
+                             0 0 10px #fff, 
+                             0 0 21px #fff, 
+                             0 0 42px #0fa, 
+                             0 0 82px #0fa, 
+                             0 0 92px #0fa;
+            }
+            50% {
+                color: #222;
+                text-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="neon-blink">Đèn Neon</div>
+
+</body>
 <body>
 	<header>
 		<style>
