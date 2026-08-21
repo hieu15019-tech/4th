@@ -7,7 +7,45 @@
 
 <body>
 	<header>
-	<h1 style="color:red;"><div style="position: fixed; top: 20px; left: 20px; font-weight: bold;">HAPPY OUR 4th ANNIVERSARY</div></h1>
+	<h1 style="color:red;">
+		<div style="position: fixed; top: 20px; left: 20px; font-weight: bold;">HAPPY OUR 4th ANNIVERSARY
+		<style>
+        body {
+            background-color: #0b0b0b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .neon-blink {
+            font-size: 60px;
+            font-weight: bold;
+            color: #fff;
+            font-family: sans-serif;
+            text-transform: uppercase;
+            /* Hiệu ứng chớp nháy liên tục */
+            animation: blink-neon 1.5s infinite;
+        }
+
+        @keyframes blink-neon {
+            0%, 100% {
+                color: #fff;
+                text-shadow: 0 0 7px #fff, 
+                             0 0 10px #fff, 
+                             0 0 21px #fff, 
+                             0 0 42px #0fa, 
+                             0 0 82px #0fa, 
+                             0 0 92px #0fa;
+            }
+            50% {
+                color: #222;
+                text-shadow: none;
+            }
+        }
+    </style>
+		</div></h1>
 	</header>
 </body>
 	
